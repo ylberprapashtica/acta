@@ -28,7 +28,7 @@ cp .env.example .env
 echo "DATABASE_URL=postgresql://$(grep POSTGRES_USER .env | cut -d '=' -f2):$(grep POSTGRES_PASSWORD .env | cut -d '=' -f2)@postgres:5432/$(grep POSTGRES_DB .env | cut -d '=' -f2)" >> backend/.env
 
 # 7. Build and start production services
-docker-compose -f docker-compose.dev.yml up -d --build
+docker compose -f docker-compose.dev.yml up -d --build
 
 # 8. Run database migrations
 docker exec -it acta_backend_dev npm run migration:run
@@ -45,7 +45,7 @@ docker exec -it acta_backend_prod npm run seed
 
 ```bash
 # 1. Clone repository with submodules
-git clone --recursive <repository-url>
+git clone --recursive https://github.com/ylberprapashtica/acta.git
 cd acta
 
 # 2. Initialize submodules (if not cloned with --recursive)
@@ -67,7 +67,7 @@ cp .env.example .env
 echo "DATABASE_URL=postgresql://$(grep POSTGRES_USER .env | cut -d '=' -f2):$(grep POSTGRES_PASSWORD .env | cut -d '=' -f2)@postgres:5432/$(grep POSTGRES_DB .env | cut -d '=' -f2)" >> backend/.env
 
 # 7. Build and start production services
-docker-compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.prod.yml up -d --build
 
 # 8. Run database migrations
 docker exec -it acta_backend_prod npm run migration:run
@@ -84,16 +84,16 @@ docker exec -it acta_backend_prod npm run seed
 
 ```bash
 # View logs
-docker-compose -f docker-compose.prod.yml logs -f
-docker-compose -f docker-compose.dev.yml logs -f
+docker compose -f docker-compose.prod.yml logs -f
+docker compose -f docker-compose.dev.yml logs -f
 
 # Stop services
-docker-compose -f docker-compose.prod.yml down
-docker-compose -f docker-compose.dev.yml down
+docker compose -f docker-compose.prod.yml down
+docker compose -f docker-compose.dev.yml down
 
 # Rebuild services
-docker-compose -f docker-compose.prod.yml up -d --build
-docker-compose -f docker-compose.dev.yml up --build
+docker compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.dev.yml up --build
 
 # Execute commands in containers
 docker exec -it acta_backend_prod sh
