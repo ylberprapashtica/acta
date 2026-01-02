@@ -31,7 +31,7 @@ echo "DATABASE_URL=postgresql://$(grep POSTGRES_USER .env | cut -d '=' -f2):$(gr
 docker-compose -f docker-compose.dev.yml up -d --build
 
 # 8. Run database migrations
-docker exec -it acta_backend_prod npm run migration:run
+docker exec -it acta_backend_dev npm run migration:run
 
 # 9. (Optional) Seed the database
 docker exec -it acta_backend_prod npm run seed
@@ -40,11 +40,6 @@ docker exec -it acta_backend_prod npm run seed
 **Access:**
 - Frontend: `http://localhost` (or port specified in FRONTEND_PORT)
 - Backend API: `http://localhost:3000` (or port specified in BACKEND_PORT)
-```
-
-**Access:**
-- Frontend: `http://localhost:5173`
-- Backend API: `http://localhost:3000`
 
 ## Production Setup
 
@@ -102,5 +97,5 @@ docker-compose -f docker-compose.dev.yml up --build
 
 # Execute commands in containers
 docker exec -it acta_backend_prod sh
-docker exec -it acta_postgres_prod psql -U postgres -d acta_db
+docker exec -it acta_postgres_prod psql -U postgres -d ${POSTGRES_DB}
 ```
