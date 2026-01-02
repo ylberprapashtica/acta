@@ -468,3 +468,4 @@ For issues or questions, please check the logs:
 - Frontend logs: Browser console or `docker-compose logs frontend`
 - Database logs: `docker-compose logs postgres`
 
+
